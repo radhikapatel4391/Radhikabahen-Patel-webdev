@@ -29,8 +29,8 @@
                  body : post.body,
                  date : new Date()
              };
-             //$http.post('/api/post',newPost).then(findBlogPosts);
-             $scope.posts.push(newPost);
+             $http.post('/api/post/',newPost).then(findBlogPosts);
+             //$scope.posts.push(newPost);
         }
         function deletePost(index){
            //$scope.posts.splice(index,1);
@@ -42,7 +42,9 @@
             $scope.index = index;
         }
         function updatePost(post){
-            $scope.posts[$scope.index] = angular.copy(post);
+            //$scope.posts[$scope.index] = angular.copy(post);
+            $http.put('/api/post/'+$scope.index,post)
+                .then(findBlogPosts)
         }
      }
 })();

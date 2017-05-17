@@ -4,9 +4,9 @@
 module.exports = function(app){
     app.get('/api/post',findAllPosts);
     app.get('/api/post/:index',findPostByIndex);
-    //app.put('/api/post/:index',updatePostByIndex);
+    app.put('/api/post/:index',updatePostByIndex);
     app.delete('/api/post/:index',deletePostByIndex);
-   // app.post('/api/post/',addNewPost);
+   app.post('/api/post/',addNewPost);
     var posts = [
 
         {title: 'post123',body: 'Body1',date: new Date()},
@@ -15,18 +15,16 @@ module.exports = function(app){
         {title: 'post423',body: 'Body4',date: new Date()}
 
     ];
-    // function addNewPost(req,res){
-    //     console.log((req.data));
-    //     posts.push(JSON.parse(req.data));
-    //     console.log(posts);
-    //     res.sendStatus(200);
-    // }
+    function addNewPost(req,res){
+        posts.push((req.body));
+        res.sendStatus(200);
+    }
 
-    // function updatePostByIndex(req,res){
-    //     var index = req.params.index;
-    //     posts[index] = angular.copy(post);
-    //     res.sendStatus(200);
-    // }
+    function updatePostByIndex(req,res){
+        var index = req.params.index;
+        posts[index] = req.body;
+        res.sendStatus(200);
+    }
     function deletePostByIndex(req,res){
         var index = req.params.index;
         posts.splice(index,1);
