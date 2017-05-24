@@ -42,7 +42,7 @@
             $scope.index = index;
         }
         function updatePost(post){
-            //$scope.posts[$scope.index] = angular.copy(post);
+            //$scope.posts[$scope.index] = BlogUsingAngular.copy(post);
             $http.put('/api/post/'+$scope.index,post)
                 .then(findBlogPosts)
         }
