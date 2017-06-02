@@ -1,19 +1,24 @@
 input.form-control,
 textarea.form-control,
-select.form-control {
+select.form-control, .btn {
     margin-bottom: 5px;
+}
+nav.navbar.navbar-inverse.navbar-fixed-top {
+
 }
 
 body {
     padding-top: 60px;
     padding-bottom: 60px;
 }
-.navbar-default {
-    background-color: darkblue;
-    border-color: darkblue;
+@media (max-width: 768px) {
+    .wd-margin-sx {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }
 
-.navbar-default .navbar-brand {
+.navbar .navbar-brand {
     color: white;
     font-size: 18px;
     font-weight: bold;
@@ -21,10 +26,10 @@ body {
 .navbar-header{
     width:100%;
 }
-.navbar-default .navbar-link {
+.navbar .navbar-link {
     color: white;
 }
-.navbar.navbar-default a{
+.navbar a{
     color: white;
 }
 .list-group-item {
@@ -49,6 +54,7 @@ body {
     opacity: 0.9;
     padding: 5px;
     border-bottom-left-radius: 10px;
+    z-index: 1;
 }
 .wd-video-container {
     position: relative;
@@ -65,5 +71,5 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+
 }
