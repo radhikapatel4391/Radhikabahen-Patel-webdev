@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 // configure a public directory to host static content
 app.use(app.express.static(__dirname + '/public'));
 
-require ("./test/app.js")(app);
+//require ("./test/app.js")(app);
 
 var blog = require('./public/lectures/BlogUsingAngular/app');
 blog(app);
