@@ -9,8 +9,8 @@ app.use(app.express.static(__dirname + '/public'));
 
 require ("./test/app.js")(app);
 
-//var blog = require('./lectures/blog/app');
-//blog(app);
+var blog = require('./lectures/blog/app');
+blog(app);
 
 require('./assignment/app');
 require('./project/app');
