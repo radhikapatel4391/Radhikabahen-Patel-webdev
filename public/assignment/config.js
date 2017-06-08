@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('WAM')
+        .module('WebAppMaker')
         .config(configuration);
 
     function configuration($routeProvider) {
@@ -59,8 +59,8 @@
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/new', {
-                templateUrl: 'views/widget/templates/widget-chooser.view.client.html',
-                controller: 'widgetChooserController',
+                templateUrl: 'views/widget/templates/widget-choose.view.client.html',
+                controller: 'widgetNewController',
                 controllerAs: 'model'
             })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
@@ -68,8 +68,10 @@
                 controller: 'widgetEditController',
                 controllerAs: 'model'
             })
-            .otherwise({
-                templateUrl: 'home.html'
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/search', {
+                templateUrl: 'views/widget/templates/widget-flickr-search.view.client.html',
+                controller: 'flickrImageSearchController',
+                controllerAs: 'model'
             })
     }
 })();

@@ -1,41 +1,48 @@
 (function () {
     angular
-        .module('WAM')
+        .module('WebAppMaker')
         .controller('widgetEditController', widgetEditController);
 
-    function widgetEditController($sce,$routeParams,$location,
+    function widgetEditController($routeParams,
+                                  $location,
                                   widgetService) {
+
         var model = this;
+
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams['pageId'];
-        model.widgetId = $routeParams.widgetId;
-        model.widgetEditUrl = widgetEditUrl;
-        model.deleteWidget = deleteWidget;
-        model.updateWidget = updateWidget;
+        model.widgetId = $routeParams['widgetId'];
 
         function init() {
-
-            model.widgets = widgetService.findAllWidgetsForPage(model.pageId);
-            model.widget = widgetService.findWidgetById(model.widgetId);
-
+            widgetService
+                .findWidgetById(model.widgetId)
+                .then(renderWidget);
         }
         init();
 
-        function widgetEditUrl(widget) {
-            var url = 'views/widget/templates/widget-'+model.widget.widgetType.toLowerCase()+'-edit.view.client.html';
-            return url;
+        model.updateWidget = updateWidget;
+        model.deleteWidget = deleteWidget;
+
+        function renderWidget(widget) {
+            model.widget = widget;
+            model.url = 'views/widget/templates/widget-'+widget.widgetType.toLowerCase()+'-edit.view.client.html';
+        }
+
+        function updateWidget(widget) {
+            widgetService
+                .updateWidget(model.widgetId, widget)
+                .then(function () {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+"/page/"+model.pageId+"/widget");
+                });
         }
 
         function deleteWidget(widgetId) {
-            widgetService.deleteWidget(widgetId);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
+            widgetService
+                .deleteWidget(widgetId)
+                .then(function () {
+                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+"/page/"+model.pageId+"/widget");
+                });
         }
-        function updateWidget(widgetId,widget) {
-            widgetService.updateWidget(widgetId,widget);
-            $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page/'+model.pageId+'/widget');
-        }
-
-
     }
 })();

@@ -1,8 +1,9 @@
-# web-dev-template
+Name: Radhika Patel <br/>
+Email Id: radhika.patel4391@gmail.com
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
-1. cd web-dev-template
-1. npm install
-1. mongod
-1. node server.js
-1. browse to localhost:3000
+
+This repository is for storing develiverables (Assignments & Project) of CS 5610 - Web Development course.
+
+Link to Web Application hosted on Heroku: https://radhikabahen-patel-webdev.herokuapp.com <br/>
+Link to project: https://radhikabahen-patel-webdev.herokuapp.com/project/index.html <br/>
+Link to Assignments: https://radhikabahen-patel-webdev.herokuapp.com/assignment/index.html <br/>

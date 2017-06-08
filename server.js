@@ -1,16 +1,20 @@
-var express = require('express');
-var app = express();
-
+var app = require('./express');
 var bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 // configure a public directory to host static content
-app.use(express.static(__dirname + '/public'));
+app.use(app.express.static(__dirname + '/public'));
 
-//require ("./test/app.js")(app);
+require ("./test/app.js")(app);
+
+var blog = require('./public/lectures/BlogUsingAngular/app');
+blog(app);
+
+require('./assignment/app');
+require('./project/app');
 
 var port = process.env.PORT || 3000;
-var ourApp = require('./lectures/angular/app');
-ourApp(app);
+
 app.listen(port);
