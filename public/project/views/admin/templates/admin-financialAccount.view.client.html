@@ -1,0 +1,127 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <div class="navbar-header wd-margin-sx">
+                    <p class="navbar-text pull-left">
+                        <a href="#!/admin"
+                           class="navbar-link">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                    </p>
+                    <a class="navbar-brand" title="All Finanacial Accounts.">
+                        Financial Accounts
+                    </a>
+                    <p class="navbar-text pull-right">
+                        <a href="#!/"
+                           class="navbar-link margin-right" title="Home">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </a>
+
+                        <a ng-click="model.logout()"
+                           class="navbar-link" title="Logout">
+                            <span class="glyphicon glyphicon-log-out"></span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <form name="myForm">
+
+        <div ng-show="model.error" class="alert alert-danger">
+            {{model.error}}
+        </div>
+
+        <div ng-show="!(model.users && model.users.length>0)" class="alert alert-danger">
+            No Household User is available in the system. You can add account only for Household users.
+        </div>
+
+        <ul class="list-group">
+            <li class="list-group-item active">
+                <div class="row">
+                    <div class="col-sm-3 col-xs-4">
+                        Username
+                    </div>
+                    <div class="col-sm-3 col-xs-3">
+                        Account Name
+                    </div>
+                    <div class="col-sm-3 hidden-xs">
+                        Account Number
+                    </div>
+                    <div class="col-sm-3 col-xs-5">
+
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-3 col-xs-4">
+                        <input ng-model="model.financialAccount._user.username"
+                               ng-show="model.financialAccount._id"
+                               readonly
+                               class="form-control"
+                               placeholder="Username"/>
+                        <select ng-model="model.financialAccount._user"
+                                ng-hide="model.financialAccount._id"
+                                class="form-control">
+                                <option ng-repeat="user in model.users"
+                                        value="{{user._id}}">
+                                        {{user.username}}
+                                </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3 col-xs-3">
+                        <input ng-model = "model.financialAccount.accountName"
+                               class="form-control"
+                               placeholder="Account Name"/>
+                    </div>
+                    <div class="col-sm-3 hidden-xs">
+                        <input ng-model = "model.financialAccount.accountNumber"
+                               class="form-control"
+                               placeholder="Account Number"/>
+                    </div>
+                    <div class="col-sm-3 col-xs-5">
+                        <span ng-click="model.updateFinancialAccount(model.financialAccount);model.financialAccount={};"
+                              ng-show="model.financialAccount._id" class="btn btn-success glyphicon glyphicon-ok pull-right"></span>
+                        <span ng-click="model.createFinancialAccount(model.financialAccount);model.financialAccount={};"
+                              ng-hide="model.financialAccount._id" class="btn btn-success glyphicon glyphicon-plus pull-right"></span>
+                    </div>
+                </div>
+            </li>
+
+            <li ng-repeat="financialAccount in model.financialAccounts" class="list-group-item">
+                <div class="row">
+                    <div class="col-sm-3 col-xs-4">
+                        {{financialAccount._user.username}}
+                    </div>
+                    <div class="col-sm-3 col-xs-3">
+                        {{financialAccount.accountName}}
+                    </div>
+                    <div class="col-sm-3 hidden-xs">
+                        {{financialAccount.accountNumber}}
+                    </div>
+                    <div class="col-sm-3 col-xs-5">
+                        <div class="pull-right">
+                            <span ng-click="model.selectFinancialAccount(financialAccount)"
+                                  class="btn btn-success glyphicon glyphicon-pencil"></span>
+                            <span ng-click="model.deleteFinancialAccount(financialAccount)"
+                                  class="btn btn-danger glyphicon glyphicon-remove"></span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </form>
+</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        </div>
+    </div>
+</nav>

@@ -4,7 +4,7 @@
             <div class="col-xs-12 col-sm-12">
                 <div class="navbar-header wd-margin-sx">
                     <p class="navbar-text pull-left">
-                        <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                        <a href="#!/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                         </a>
                     </p>
@@ -27,10 +27,10 @@
             <a>Label</a>
         </li>
         <li class="list-group-item">
-            <a>HTML</a>
+            <a ng-click="model.createWidget('HTML')">HTML</a>
         </li>
         <li class="list-group-item">
-            <a>Text Input</a>
+            <a ng-click="model.createWidget('TEXT')">Text Input</a>
         </li>
         <li class="list-group-item">
             <a>Link</a>

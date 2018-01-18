@@ -5,10 +5,11 @@
     
     function pageEditController($routeParams,
                                 $location,
+                                currentUser,
                                 pageService) {
         var model = this;
 
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams.pageId;
 
@@ -38,15 +39,15 @@
             pageService
                 .updatePage(model.pageId, page)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
+                    $location.url('/website/'+model.websiteId+'/page');
                 });
         }
 
-        function deletePage(pageId) {
+        function deletePage(websiteId, pageId) {
             pageService
-                .deletePage(pageId)
+                .deletePage(websiteId, pageId)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website/'+model.websiteId+'/page');
+                    $location.url('/website/'+model.websiteId+'/page');
                 });
         }
     }

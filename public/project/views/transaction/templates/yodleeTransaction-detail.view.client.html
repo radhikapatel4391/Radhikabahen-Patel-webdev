@@ -1,0 +1,94 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <p class="navbar-text pull-left">
+                <a href="#!/financialAccount/{{model.financialAccountId}}/yodleeTransaction"
+                   class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </p>
+            <a class="navbar-brand">
+                Yodlee Transaction
+                <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" ng-show="model.loading"></span>
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="#!/"
+                   class="navbar-link margin-right" title="Home">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+
+                <a ng-click="model.logout()"
+                   class="navbar-link" title="Logout">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-6">
+                    <b>Transaction Date</b>
+                </div>
+                <div class="col-xs-6">
+                    {{model.transaction.transactionDate | date}}
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-6">
+                    <b>Category</b>
+                </div>
+                <div class="col-xs-6">
+                    {{model.transaction.category}}
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-6">
+                    <b>Type</b>
+                </div>
+                <div class="col-xs-6">
+                    {{model.transaction.baseType}}
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-6">
+                    <b>Amount</b>
+                </div>
+                <div class="col-xs-6">
+                    ${{model.transaction.amount.amount}}
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-6">
+                    <b>Description</b>
+                </div>
+                <div class="col-xs-6">
+                    {{model.transaction.description.original}}
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-6">
+                    <b>Merchant Name</b>
+                </div>
+                <div class="col-xs-6">
+                    {{model.transaction.merchant.name}}
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

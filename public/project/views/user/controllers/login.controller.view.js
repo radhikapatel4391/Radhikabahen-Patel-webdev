@@ -11,24 +11,20 @@
 
         function login(username, password) {
 
-            if(username === null || username === '' || typeof username === 'undefined') {
-                model.error = 'Username is required.';
-                return;
-            }
-
-            if(password === null || password === '' || typeof password === 'undefined') {
-                model.error = "Passwords is required.";
-                return;
-            }
-
             userService
-                .findUserByCredentials(username, password)
+                .login(username, password)
                 .then(function (found) {
                     if(found !== null) {
-                        $location.url('/user/' + found._id);
+                        if(found.role === 'ADMIN') {
+                            $location.url('/admin');
+                        } else {
+                            $location.url('/profile');
+                        }
                     } else {
                         model.error = "Incorrect credentials. Please enter valid Username and Password.";
                     }
+                }, function () {
+                    model.error = "Incorrect credentials. Please enter valid Username and Password.";
                 });
         }
     }

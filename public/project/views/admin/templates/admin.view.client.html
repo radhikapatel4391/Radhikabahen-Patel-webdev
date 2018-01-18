@@ -1,0 +1,149 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">
+                Admin Profile
+            </a>
+            <p class="navbar-text pull-right">
+                <a href="#!/"
+                   class="navbar-link margin-right" title="Home">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+
+                <a ng-click="model.logout()"
+                   class="navbar-link" title="Logout">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <div ng-show="model.message" class="alert alert-info">
+        {{model.message}}
+    </div>
+
+    <form name="myForm">
+
+        <div class="form-group">
+            <label for="username">
+                Username
+            </label>
+            <input ng-model="model.user.username"
+                   readonly
+                   type="text"
+                   class="form-control"
+                   id="username"
+                   placeholder="Username">
+        </div>
+
+        <div class="form-group">
+            <label for="first-name">
+                First Name
+            </label>
+            <input ng-model="model.user.firstName"
+                   type="text"
+                   class="form-control"
+                   id="first-name"
+                   placeholder="First Name">
+        </div>
+
+        <div class="form-group">
+            <label for="last-name">
+                Last Name
+            </label>
+            <input ng-model="model.user.lastName"
+                   type="text"
+                   class="form-control"
+                   id="last-name"
+                   placeholder="Last Name">
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : (!myForm.dob.$pristine || submitted) && myForm.dob.$invalid }">
+            <label for="dob">
+                Date of Birth
+            </label>
+            <input ng-model="model.user.dob"
+                   type="date"
+                   class="form-control"
+                   id="dob"
+                   name="dob"
+                   placeholder="Date of Birth">
+            <div ng-show="(!myForm.dob.$pristine || submitted) && myForm.dob.$invalid" class="help-block">
+                Enter a valid Date of Birth.
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : (!myForm.email.$pristine || submitted) && myForm.email.$invalid }">
+            <label for="email">
+                Email address
+            </label>
+            <input ng-model="model.user.email"
+                   type="email"
+                   class="form-control"
+                   id="email"
+                   name="email"
+                   placeholder="Email address">
+            <div ng-show="(!myForm.email.$pristine || submitted) && myForm.email.$invalid" class="help-block">
+                Enter a valid Email Address.
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : (!myForm.phone.$pristine || submitted) && myForm.phone.$invalid }">
+            <label for="phone">
+                Phone
+            </label>
+            <input ng-model="model.user.phone"
+                   type="number"
+                   class="form-control"
+                   ng-minlength="10"
+                   ng-maxlength="10"
+                   id="phone"
+                   name="phone"
+                   placeholder="Phone">
+            <div ng-show="(!myForm.phone.$pristine || submitted) && myForm.phone.$invalid" class="help-block">
+                Enter a valid Phone, Phone Number should be of 10 digits.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="address">
+                Address
+            </label>
+            <input ng-model="model.user.address"
+                   type="text"
+                   class="form-control"
+                   id="address"
+                   placeholder="Address">
+        </div>
+
+        <a ng-click="(myForm.email.$invalid || myForm.phone.$invalid || myForm.dob.$invalid) ? submitted=true : model.updateUser(model.user)"
+           class="btn btn-success btn-block">
+            Update
+        </a>
+
+        <a class="btn btn-primary btn-block"
+           href="#!/admin/user">
+            Manage Users
+        </a>
+
+        <a class="btn btn-primary btn-block"
+           href="#!/admin/financialAccount">
+            Manage Financial Accounts
+        </a>
+
+    </form>
+
+</div>
+
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        </div>
+    </div>
+</nav>
+

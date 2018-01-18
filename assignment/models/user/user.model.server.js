@@ -15,6 +15,7 @@ userModel.addWebsite = addWebsite;
 userModel.deleteWebsite = deleteWebsite;
 
 module.exports = userModel;
+
 function createUser(user) {
     return userModel.create(user);
 }

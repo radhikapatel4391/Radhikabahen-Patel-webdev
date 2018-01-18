@@ -1,13 +1,18 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand">
                 Profile
             </a>
             <p class="navbar-text pull-right">
-                <a ng-click="model.updateUser(model.user)"
-                   class="navbar-link">
-                    <span class="glyphicon glyphicon-ok"></span>
+                <a href="#!/"
+                   class="navbar-link margin-right" title="Home">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+
+                <a ng-click="model.logout()"
+                   class="navbar-link" title="Logout">
+                    <span class="glyphicon glyphicon-log-out"></span>
                 </a>
             </p>
         </div>
@@ -21,7 +26,9 @@
     <div ng-show="model.message" class="alert alert-info">
         {{model.message}}
     </div>
-    <form>
+
+    <form name="myForm">
+
         <div class="form-group">
             <label for="username">
                 Username
@@ -31,18 +38,9 @@
                    type="text"
                    class="form-control"
                    id="username"
-                   placeholder="AliceW">
+                   placeholder="Username">
         </div>
-        <div class="form-group">
-            <label for="email">
-                Email address
-            </label>
-            <input ng-model="model.user.email"
-                   type="email"
-                   class="form-control"
-                   id="email"
-                   placeholder="alice@wonderland.com">
-        </div>
+
         <div class="form-group">
             <label for="first-name">
                 First Name
@@ -51,8 +49,9 @@
                    type="text"
                    class="form-control"
                    id="first-name"
-                   placeholder="Alice">
+                   placeholder="First Name">
         </div>
+
         <div class="form-group">
             <label for="last-name">
                 Last Name
@@ -61,26 +60,99 @@
                    type="text"
                    class="form-control"
                    id="last-name"
-                   placeholder="Wonderland">
+                   placeholder="Last Name">
         </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : (!myForm.dob.$pristine || submitted) && myForm.dob.$invalid }">
+            <label for="dob">
+                Date of Birth
+            </label>
+            <input ng-model="model.user.dob"
+                   type="date"
+                   class="form-control"
+                   id="dob"
+                   name="dob"
+                   placeholder="Date of Birth">
+            <div ng-show="(!myForm.dob.$pristine || submitted) && myForm.dob.$invalid" class="help-block">
+                Enter a valid Date of Birth.
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : (!myForm.email.$pristine || submitted) && myForm.email.$invalid }">
+            <label for="email">
+                Email address
+            </label>
+            <input ng-model="model.user.email"
+                   type="email"
+                   class="form-control"
+                   id="email"
+                   name="email"
+                   placeholder="Email address">
+            <div ng-show="(!myForm.email.$pristine || submitted) && myForm.email.$invalid" class="help-block">
+                Enter a valid Email Address.
+            </div>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error' : (!myForm.phone.$pristine || submitted) && myForm.phone.$invalid }">
+            <label for="phone">
+                Phone
+            </label>
+            <input ng-model="model.user.phone"
+                   type="number"
+                   class="form-control"
+                   ng-minlength="10"
+                   ng-maxlength="10"
+                   id="phone"
+                   name="phone"
+                   placeholder="Phone">
+            <div ng-show="(!myForm.phone.$pristine || submitted) && myForm.phone.$invalid" class="help-block">
+                Enter a valid Phone, Phone Number should be of 10 digits.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="address">
+                Address
+            </label>
+            <input ng-model="model.user.address"
+                   type="text"
+                   class="form-control"
+                   id="address"
+                   placeholder="Address">
+        </div>
+
+        <a ng-click="(myForm.email.$invalid || myForm.phone.$invalid || myForm.dob.$invalid) ? submitted=true : model.updateProfile(model.user)"
+           class="btn btn-success btn-block">
+            Update
+        </a>
+
+        <a class="btn btn-primary btn-block"
+           href="#!/followUser">
+            Users You Follow
+        </a>
+
+        <a class="btn btn-primary btn-block"
+           href="#!/financialAccount">
+            Financial Accounts
+        </a>
+
+        <a class="btn btn-primary btn-block"
+           href="#!/balance">
+            View Balance
+        </a>
+
+        <a class="btn btn-primary btn-block"
+           href="#!/familyMember">
+            Family Members
+        </a>
+
+        <a ng-click="model.unregister()"
+           class="btn btn-danger btn-block">
+            Unregister
+        </a>
+
     </form>
 
-    <a ng-click="model.updateUser(model.user)"
-       class="btn btn-success btn-block">
-        Update
-    </a>
-    <a ng-click="model.deleteUser(model.user)"
-       class="btn btn-danger btn-block">
-        Unregister
-    </a>
-    <a class="btn btn-primary btn-block"
-       href="#!/user/{{model.userId}}/creditcard">
-        Validate Credit Card
-    </a>
-    <a class="btn btn-danger  btn-block"
-       href="#!/login">
-        Logout
-    </a>
 </div>
 
 <div ng-include="'views/common/footer.view.client.html'"></div>
